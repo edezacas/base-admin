@@ -372,7 +372,7 @@ a:focus {
 }
 
 .is-collapsed .page-container {
-    padding-left: 70px;
+    padding-left: 65px;
 }
 
 footer {
@@ -411,7 +411,7 @@ footer {
 
 @media screen and (min-width: 1440px) {
     .is-collapsed .sidebar {
-        width: 70px;
+        width: 65px;
     }
 
     .is-collapsed .sidebar .sidebar-inner .sidebar-logo {

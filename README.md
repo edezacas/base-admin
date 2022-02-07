@@ -1,155 +1,70 @@
-Digital Ascetic Base User
+WeAreBrave Base Admin
 =======
 
-This library provide basic abstract class to work with User entity.
+### Getting Started
 
-Also has implemented routes and services to handle login, logout and reset password.
+This bundle use **Bootstrap 5.1.3** and **jQuery 3.6**.
 
-## DigitalAscetic\BaseUserBundle\Entity\AbstractBaseUser 
+This bundle includes 2 views with a set of css and js assets:
+- login.html.twig: Simple page layout with a great style.
+- base.html.twig: Minimal Admin layout.
 
-This is the abstract class that you must extend from.
+### How to use
 
-## Configuration
-
-The security/user system is pluggable and can be configured this way:
-
-First of all create your own User class extending from AbstractBaseUser:
+1) Enable this bundle at AppKernel o bundles.php:
 
 ```
-
-namespace App\Entity;
-
-
-use DigitalAscetic\BaseUserBundle\Entity\AbstractBaseUser;
-use Doctrine\ORM\Mapping as ORM;
-
-
-
-/**
- * Class User
- * @package App\Entity
- *
- * @ORM\Table(name="test_user")
- * @ORM\Entity()
- */
-class User extends AbstractBaseUser
-{
-
-}
-```
-
-### Reference
-
-#### config/packages/digital_ascetic_base_user.yaml:
-
-| Property        | Description           | Default  |
-| ------------- |:-------------:| -----:|
-| user_class      | User entity class | required  |
-| firewall_name      | Firewall name to apply security checker      |   main |
-| user_enabled | Default user enabled behaviour; if enabled is false user can't login until is enabled | false |
-
-Example: 
-
-```yaml
-digital_ascetic_base_user:
-  user_class: 'App\Entity\User'
-  firewall_name: 'main'
-  user_enabled: true // User is enabled by default
-```
-### Routing
-
-#### config/routes.yaml:
-
-You must import all BaseUser routes:
-
-```yaml
-asc_base_user:
-  resource: "@WeAreBraveBaseAdminBundle/Resources/config/routes/all.xml"
-```
-
-or for example if you don't want reset functionality you can only import:
-
-```yaml
-asc_base_user:
-  resource: "@WeAreBraveBaseAdminBundle/Resources/config/routes/security.xml"
-```
-
-### Security
-
-#### config/packages/security.yaml:
-
-> Review [Symfony Security](https://symfony.com/doc/current/security.html) Documentation: Firewall and authentication sections
-
-```yaml
-security:
-  encoders:
-    App\Entity\User:
-      algorithm: auto
-      
-  providers:
-    base_user_provider:
-      id: DigitalAscetic\BaseUserBundle\Security\UserProvider
-```
-
-## Persisting User to Database
-
-To persist user we can simply use DigitalAscetic\BaseUserBundle\Service\UserManagerInterface *updateUser* method, that automatically handle encoding password and enabled behaviour.
-
-### Example
-
-The next code create a testUser entity, and calling *updateUser* method, automatically encode *plainPassword* and store to *password* property. Also depending on *user_enabled* configuration value, set its behaviour.
-
-```php 
-$testUser = new BaseUser();
-$testUser->setUsername('test');
-$testUser->setEmail('test@test.com');
-$testUser->setPlainPassword('12345678');
-$this->userManager->updateUser($testUser);
+return [
+    Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
+    ...
+    WeAreBrave\BaseAdminBundle\WeAreBraveBaseAdminBundle::class => ['all' => true],
+];
 ```
 
 
-## Reset Password
-
-You can use our MVC implementation calling to :
-
-* /reset_password
-* /reset_password/confirm/{token}
-
-Or use our RepeatPasswordService with a the methods to accomplish this task.
-
-There are two events dispatched:
-
-* BaseUserEvent::USER_RESET_PASSWORD_REQUESTED when user has requested a new reset password; subscribing you can email to user
-* BaseUserEvent::USER_RESET_PASSWORD_SUCCESS when user has successfully reset password
-
-
-## Extends
-
-This bundle is compatible with JMSSerializerBundle, detecting if it's enabled and add AbstractBaseUser serialize
-mappings to its configuration.
+2) Add configuration file:
 
 ```
-    id:
-      groups: [ id ]
-      type: integer
-    username:
-      groups: [ user.default ]
-      type: string
-    email:
-      groups: [ user.default ]
-      type: string
-    plainPassword:
-      groups: [ user.default ]
-      type: string
-    roles:
-      groups: [ user.roles ]
-      type: array
-```
-
-## Testing
-
-Run test executing:
+we_are_brave_base_admin:
+    site_name: 'site tile'
+    login_check: _route_name_or_url_to_login_check
+    logout: _route_name_or_url_to_logout
+    admin_home: _route_name_or_url_to_admin_homepage
 
 ```
-./vendor/bin/simple-phpunit
+
+3) To show login page simply create your own login.html.twig and add:
+
+```
+{% include ('@WeAreBraveBaseAdmin/login.html.twig') %}
+```
+
+4) For admin layout, create a template called for example _layout.html.twig_ and add:
+
+```
+{% extends '@WeAreBraveBaseAdmin/base.html.twig' %}
+
+{% block title %} _YOUR_CUSTOM_HTML_TITLE_ {% endblock %}
+
+{% block sidebar %}
+    _YOUR_CUSTOM_SIDEBAR_MENU_
+{% endblock %}
+
+{% block dropdown %}
+    _YOUR_CUSTOM_DROPDOWN_MENU_BELOW_USERNAME_
+{% endblock %}
+
+{% block footer %}
+   _YOUR_CUSTOM_FOOTER_BELOW_USERNAME_
+{% endblock %}
+
+```
+
+5) And at last, for each page inside admin control panel, you only need to extends from your layout.html.twig. For example, for dashboard.html.twig:
+```
+{% extends 'admin/layout.html.twig' %}
+
+{% block content %}
+    _YOUR_DASHBOARD_CONTENT_PAGE_
+{% endblock %}
 ```
