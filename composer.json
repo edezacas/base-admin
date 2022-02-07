@@ -1,6 +1,6 @@
 {
     "name": "wearebrave/base-admin",
-    "version": "1.2.1",
+    "version": "1.2.2",
     "type": "symfony-bundle",
     "license": "proprietary",
     "description": "WeAreBrave Base Admin Bundle",
@@ -36,5 +36,6 @@
         "psr-4": {
             "WeAreBrave\\BaseAdminBundle\\Tests\\": "tests/"
         }
-    }
+    },
+    "minimum-stability":  "dev"
 }
