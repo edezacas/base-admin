@@ -1,0 +1,429 @@
+@import "./vendor/bootstrap.min.css";
+@import "./vendor/themify-icons.css";
+
+article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section {
+    display: block;
+}
+
+a {
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+h6 {
+    font-size: .975rem;
+}
+
+body {
+    font-size: 14px;
+    color: #000000;
+    line-height: 1.5;
+    letter-spacing: 0.2px;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+}
+
+p {
+    line-height: 1.9;
+}
+
+ul {
+    margin-bottom: 0;
+}
+
+a {
+    color: #0f9aee;
+}
+
+a:hover,
+a:focus {
+    text-decoration: none;
+    color: #0c7bbe;
+}
+
+.sidebar {
+    background-color: #fff;
+    bottom: 0;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    -webkit-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+    width: 280px;
+    z-index: 1000;
+}
+
+.sidebar-inner {
+    position: relative;
+    height: 100%;
+    border-right: 1px solid rgba(0, 0, 0, .0625);
+}
+
+.sidebar-logo {
+    border-bottom: 1px solid rgba(0, 0, 0, .0625);
+    line-height: 0;
+    padding: 0 20px;
+    -webkit-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+}
+
+.sidebar-logo a {
+    display: inline-block;
+    width: 100%;
+}
+
+.sidebar-logo a .logo {
+    background-position: 0;
+    background-repeat: no-repeat;
+    display: inline-block;
+    min-height: 64px;
+    line-height: 64px;
+    width: 70px;
+    max-height: 65px;
+    text-align: center;
+}
+
+.sidebar-logo a .logo-text {
+    color: #313435;
+}
+
+.sidebar-logo .mobile-toggle {
+    display: none;
+    float: right;
+    font-size: 18px;
+    width: auto;
+    height: 64px;
+    line-height: 64px;
+}
+
+.sidebar-logo .mobile-toggle a {
+    color: #72777a;
+}
+
+.sidebar-logo a {
+    display: inline-block;
+    width: 100%;
+}
+
+.sidebar ul {
+    list-style-type: none;
+}
+
+.sidebar-menu:after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+.sidebar-menu li {
+    position: relative;
+}
+
+.sidebar-menu > li > a {
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 5px 15px;
+    position: relative;
+    white-space: nowrap;
+}
+
+.sidebar-menu li a:focus, .sidebar-menu li a:hover {
+    color: #313435;
+    text-decoration: none;
+}
+
+.sidebar-menu li a {
+    color: #72777a;
+    -webkit-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+.sidebar-menu > li > a .icon-holder {
+    border-radius: 6px;
+    display: inline-block;
+    font-size: 17px;
+    height: 35px;
+    left: 0;
+    line-height: 35px;
+    margin-right: 14px;
+    position: relative;
+    text-align: center;
+    -webkit-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+    width: 35px;
+}
+
+.sidebar-toggle-container {
+    width: 100%;
+    min-height: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-toggle {
+    display: grid;
+    place-items: center;
+    min-height: auto;
+    height: 20px;
+    width: 40px;
+    cursor: pointer;
+}
+
+.sidebar-toggle > span {
+    width: 33px;
+    height: 2px;
+    background: #313435;
+    display: block;
+    transition: all 0.3s ease-in-out;
+    justify-self: end;
+}
+
+.sidebar-toggle .line-1 {
+    width: 25px;
+}
+
+.sidebar-toggle .line-2 {
+    width: 18px;
+}
+
+.sidebar-toggle:hover span:nth-child(1) {
+    width: 18px;
+}
+
+.sidebar-toggle:hover span:nth-child(2) {
+    width: 25px;
+}
+
+.peers {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -ms-flex-flow: row wrap;
+    flex-flow: row wrap;
+    height: auto;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.peer {
+    display: block;
+    height: auto;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 auto;
+    flex: 0 0 auto;
+}
+
+.peer-greed,
+.peers-greed > .peer,
+.peers-greed > .peers {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+}
+
+.page-container {
+    min-height: 100vh;
+    padding-left: 280px;
+    -webkit-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+}
+
+.header {
+    background-color: #fff;
+    border-bottom: 1px solid rgba(0, 0, 0, .0625);
+    display: block;
+    height: 65px;
+    margin-bottom: 0;
+    padding: 0;
+    position: fixed;
+    -webkit-transition: all .2s ease;
+    -o-transition: all .2s ease;
+    transition: all .2s ease;
+    width: calc(100% - 280px);
+    z-index: 800;
+}
+
+.header .header-container:after {
+    display: block;
+    clear: both;
+    content: "";
+}
+
+.header .header-container .nav-left {
+    float: left;
+    margin-left: 15px;
+}
+
+.header .header-container .nav-right {
+    float: right;
+}
+
+.header .header-container .dropdown-menu .divider {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.0625);
+    height: 1px;
+    overflow: hidden;
+}
+
+.header .header-container .nav-right .dropdown-menu {
+    left: auto;
+    right: 0;
+    font-size: .87rem !important;
+}
+
+.header .header-container .nav-right .dropdown-menu li + .logout:before {
+    content: "";
+    border-bottom: 1px solid rgba(0, 0, 0, 0.0625);
+    height: 1px;
+    overflow: hidden;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.header .header-container .nav-right .dropdown-menu li + .logout {
+    padding-top: 5px;
+    position: relative;
+}
+
+.header .header-container .nav-left, .header .header-container .nav-right {
+    list-style: none;
+    margin-bottom: 0;
+    padding-left: 0;
+    position: relative;
+}
+
+.header .header-container .nav-left > li, .header .header-container .nav-right > li {
+    float: left;
+}
+
+.header .header-container .nav-left > li > a, .header .header-container .nav-right > li > a {
+    color: #72777a;
+    display: block;
+    line-height: 65px;
+    min-height: 65px;
+    padding: 0 15px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    transition: all .2s ease-in-out;
+}
+
+.header .header-container .nav-right .dropdown-menu > li > a {
+    line-height: 1.5;
+    min-height: auto;
+    padding: 5px 10px;
+    color: #72777a !important;
+    display: block;
+}
+
+.header .header-container .nav-right .dropdown-menu > li > a:hover {
+    background-color: #f9fafb !important;
+}
+
+.main-content {
+    padding: 85px 20px 20px;
+    min-height: calc(100vh - 61px);
+    background-color: #f6f8fa;
+}
+
+.ai-c {
+    align-items: center;
+}
+
+.fxw-nw {
+    flex-wrap: nowrap;
+}
+
+.lh-1 {
+    line-height: 1 !important;
+}
+
+.is-collapsed .page-container {
+    padding-left: 70px;
+}
+
+footer {
+    z-index: 1;
+    position: relative;
+    border-top: 1px solid rgba(0, 0, 0, .0625);
+    color: #7c8695;
+    font-size: .87rem;
+    padding-top: 5px;
+    text-align: center;
+    line-height: 1.5rem;
+}
+
+@media screen and (max-width: 991px) {
+    .sidebar {
+        left: -280px;
+        width: 250px;
+    }
+
+    .sidebar-logo .mobile-toggle {
+        display: inline-block;
+    }
+
+    .header {
+        width: 100%;
+    }
+
+    .page-container {
+        padding-left: 0;
+    }
+
+    .is-collapsed .sidebar {
+        left: 0;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .is-collapsed .sidebar {
+        width: 70px;
+    }
+
+    .is-collapsed .sidebar .sidebar-inner .sidebar-logo {
+        border-bottom: 1px solid transparent;
+        padding: 0;
+    }
+
+    .is-collapsed .sidebar .sidebar-inner .sidebar-menu > li > a .title {
+        display: none;
+    }
+
+    .is-collapsed .header {
+        width: calc(100% - 70px);
+    }
+}

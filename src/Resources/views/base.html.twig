@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}{% endblock %}</title>
+
+    {% block stylesheets %}
+        <link href="{{ asset('@WeAreBraveBaseAdmin/css/base-admin.css') }}" rel="stylesheet"/>
+    {% endblock %}
+</head>
+<body>
+<div class="sidebar">
+    <div class="sidebar-inner">
+        <div class="sidebar-logo">
+            <div class="peers ai-c fxw-nw">
+                <div class="peer peer-greed"><a class="sidebar-link"
+                                                href="{{ app_admin_home }}">
+                        <div class="peers ai-c fxw-nw">
+                            <div class="peer">
+                                <div class="logo"><!--<img src="{{ asset('img/logo.png') }}" alt="">--></div>
+                            </div>
+                            <div class="peer peer-greed"><h5 class="lh-1 mb-0 ml-2 logo-text">{{ app_site_name }}</h5></div>
+                        </div>
+                    </a>
+                </div>
+                <div class="peer">
+                    <div class="mobile-toggle sidebar-toggle"><a href="#" class="td-n"><i
+                                class="ti-arrow-circle-left"></i></a></div>
+                </div>
+            </div>
+        </div>
+        <ul class="sidebar-menu scrollable">
+            {% block sidebar %}{% endblock %}
+        </ul>
+    </div>
+</div>
+<div class="page-container">
+    <div class="header navbar">
+        <div class="header-container">
+            <ul class="nav-left">
+                <li>
+                    <div class="sidebar-toggle-container">
+                        <a href="#" id="sidebar-toggle" class="sidebar-toggle">
+                            <span class="line-1"></span>
+                            <span class="line-2"></span>
+                            <span class="line-3"></span>
+                        </a>
+                    </div>
+                </li>
+            </ul>
+            <ul class="nav-right">
+                <li class="dropdown"><a href="#" class="dropdown-toggle peers fxw-nw ai-c lh-1"
+                                        role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <div class="peer">{{ app.user.username }}</div>
+                    </a>
+                    <ul class="dropdown-menu">
+                        {% block dropdown %}{% endblock %}
+                        <li class="logout"><a href="{{ path(app_logout) }}"><i
+                                    class="ti-power-off "></i> <span>Logout</span></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <main class="main-content">
+        <div id="mainContent">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+    <footer>
+        {% block footer %}{% endblock %}
+    </footer>
+</div>
+
+{% block javascripts %}
+    <script src="{{ asset('@WeAreBraveBaseAdmin/js/vendor/jquery.min.js') }}"></script>
+    <script src="{{ asset('@WeAreBraveBaseAdmin/js/vendor/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('@WeAreBraveBaseAdmin/js/base-admin.js') }}"></script>
+{% endblock %}
+</body>
+
+</html>

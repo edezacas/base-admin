@@ -1,0 +1,42 @@
+{
+    "name": "wearebrave/base-admin",
+    "version": "1.0.0",
+    "type": "symfony-bundle",
+    "license": "proprietary",
+    "description": "WeAreBrave Base Admin Bundle",
+    "authors": [
+        {
+            "name": "Eduard Deza",
+            "email": "edu@wearebrave.net"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=7.2.5",
+        "symfony/asset": "*",
+        "symfony/framework-bundle": "^4.4|^5.4",
+        "symfony/twig-bundle": "*"
+    },
+    "require-dev": {
+        "symfony/debug": "^4.4",
+        "symfony/test-pack": "^1.0",
+        "symfony/yaml": "^5.4"
+    },
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "WeAreBrave\\BaseAdminBundle\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "WeAreBrave\\BaseAdminBundle\\Tests\\": "tests/"
+        }
+    }
+}

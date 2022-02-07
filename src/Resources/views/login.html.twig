@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}{% endblock %}</title>
+    {% block stylesheets %}
+        <link href="{{ asset('@WeAreBraveBaseAdmin/css/base-login.css') }}" rel="stylesheet"/>
+    {% endblock %}
+</head>
+<body>
+{% if app.request.hasPreviousSession %}
+    {% for type, messages in app.session.flashbag.all() %}
+        {% for message in messages %}
+            <div class="flash-{{ type }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+{% endif %}
+
+<div>
+    <div class="peers ai-s fxw-nw h-100vh">
+        <div class="d-n@sm- sign-bg peer peer-greed h-100 pos-r bgr-n bgpX-c bgpY-c bgsz-cv bg-img">
+            <div class="pos-a centerXY">
+                <div class="bgc-white bdrs-50p pos-r" style="width:120px;height:120px"><!--<img class="pos-a centerXY"
+                                                                                            src="{{ asset('build/images/logo.png') }}"
+                                                                                            alt="">--></div>
+            </div>
+        </div>
+        <div class="col-12 col-md-4 peer pX-40 pY-80 h-100 bgc-white scrollable pos-r ps" style="min-width:320px"><h4
+                    class="fw-300 c-grey-900 mB-40">Login</h4>
+            <form action="{{ path(app_login_check) }}" method="post">
+                {% if csrf_token is defined and csrf_token is not null %}
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}"/>
+                {% endif %}
+                <div class="form-group">
+
+                    <label for="username" class="text-normal text-dark">Username</label>
+                    <input type="text" class="form-control" id="username" name="_username" value="{{ last_username }}"
+                           required="required"
+                           autocomplete="username"/>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="text-normal text-dark">Password</label>
+                    <input type="password" class="form-control" id="password" name="_password" required="required"
+                           autocomplete="current-password"/>
+                </div>
+
+                <div class="form-group">
+                    <div class="peers ai-c jc-sb fxw-nw">
+                        <div class="peer">
+                            <div class="checkbox checkbox-circle checkbox-info peers ai-c">
+                            </div>
+                        </div>
+
+                        <div class="peer">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            {% if error %}
+                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            {% endif %}
+        </div>
+
+        <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
+            <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
+        </div>
+        <div class="ps__rail-y" style="top: 0px; right: 0px;">
+            <div class="ps__thumb-y" tabindex="0" style="top: 0px; height: 0px;"></div>
+        </div>
+    </div>
+
+</div>
+{% block javascripts %}
+{% endblock %}
+</body>
+</html>
