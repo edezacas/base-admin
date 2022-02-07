@@ -64,7 +64,7 @@ echo
 echo "Uploading package to Gemfury"
 echo
 
-curl -F package=@package.zip https://$SECRET@push.fury.io/digitalascetic/
+curl -F package=@package.zip https://$SECRET@push.fury.io/wearebrave/
 
 echo
 echo "Creating tag v${VERSION}"
