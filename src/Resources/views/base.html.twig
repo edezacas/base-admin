@@ -6,7 +6,7 @@
     <title>{% block title %}{% endblock %}</title>
 
     {% block stylesheets %}
-        <link href="{{ asset('@WeAreBraveBaseAdmin/css/base-admin.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('bundles/wearebravebaseadmin/css/base-admin.css') }}" rel="stylesheet"/>
     {% endblock %}
 </head>
 <body>
@@ -15,7 +15,7 @@
         <div class="sidebar-logo">
             <div class="peers ai-c fxw-nw">
                 <div class="peer peer-greed"><a class="sidebar-link"
-                                                href="{{ app_admin_home }}">
+                                                href="{{ path(app_admin_home) }}">
                         <div class="peers ai-c fxw-nw">
                             <div class="peer">
                                 <div class="logo"><!--<img src="{{ asset('img/logo.png') }}" alt="">--></div>
@@ -76,9 +76,9 @@
 </div>
 
 {% block javascripts %}
-    <script src="{{ asset('@WeAreBraveBaseAdmin/js/vendor/jquery.min.js') }}"></script>
-    <script src="{{ asset('@WeAreBraveBaseAdmin/js/vendor/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('@WeAreBraveBaseAdmin/js/base-admin.js') }}"></script>
+    <script src="{{ asset('bundles/wearebravebaseadmin/js/vendor/jquery.min.js') }}"></script>
+    <script src="{{ asset('bundles/wearebravebaseadmin/js/vendor/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('bundles/wearebravebaseadmin/js/base-admin.js') }}"></script>
 {% endblock %}
 </body>
 

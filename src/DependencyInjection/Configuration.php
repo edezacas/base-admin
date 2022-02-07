@@ -11,7 +11,7 @@ class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder('base_admin');
+        $treeBuilder = new TreeBuilder('we_are_brave_base_admin');
 
         $treeBuilder->getRootNode()
             ->children()
