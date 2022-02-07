@@ -1,6 +1,6 @@
 {
     "name": "wearebrave/base-admin",
-    "version": "1.2.0",
+    "version": "1.2.1",
     "type": "symfony-bundle",
     "license": "proprietary",
     "description": "WeAreBrave Base Admin Bundle",
@@ -10,8 +10,6 @@
             "email": "edu@wearebrave.net"
         }
     ],
-    "minimum-stability": "stable",
-    "prefer-stable": true,
     "require": {
         "php": ">=7.2.5",
         "symfony/asset": "*",
