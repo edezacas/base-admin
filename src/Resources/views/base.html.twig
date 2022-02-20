@@ -20,13 +20,14 @@
                             <div class="peer">
                                 <div class="logo"><!--<img src="{{ asset('img/logo.png') }}" alt="">--></div>
                             </div>
-                            <div class="peer peer-greed"><h5 class="lh-1 mb-0 ml-2 logo-text">{{ app_site_name }}</h5></div>
+                            <div class="peer peer-greed"><h5 class="lh-1 mb-0 ml-2 logo-text">{{ app_site_name }}</h5>
+                            </div>
                         </div>
                     </a>
                 </div>
                 <div class="peer">
                     <div class="mobile-toggle sidebar-toggle"><a href="#" class="td-n"><i
-                                class="ti-arrow-circle-left"></i></a></div>
+                                    class="ti-arrow-circle-left"></i></a></div>
                 </div>
             </div>
         </div>
@@ -58,7 +59,7 @@
                     <ul class="dropdown-menu">
                         {% block dropdown %}{% endblock %}
                         <li class="logout"><a href="{{ path(app_logout) }}"><i
-                                    class="ti-power-off "></i> <span>Logout</span></a>
+                                        class="ti-power-off "></i> <span>Logout</span></a>
                         </li>
                     </ul>
                 </li>
@@ -67,7 +68,25 @@
     </div>
     <main class="main-content">
         <div id="mainContent">
-            {% block content %}{% endblock %}
+            <div class="container-fluid">
+                <h4 class="c-title">{% block contentTitle %}{% endblock %}
+                    {% set referer =  app.request.headers.get('referer') %}
+                    {% set admin_home_uri =  url(app_admin_home) %}
+                    {% if app.request.attributes.get( '_route' ) != app_admin_home and
+                        referer != admin_home_uri and
+                        app.request.uri | contains(referer) %}
+                        <a class="float-end" href="{{ referer }}"><i
+                                    class="ti-back-left"></i></a>
+                    {% endif %}
+                </h4>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="content">
+                            {% block content %}{% endblock %}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     <footer>

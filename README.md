@@ -5,6 +5,8 @@ WeAreBrave Base Admin
 
 This bundle use **Bootstrap 5.1.3** and **jQuery 3.6**.
 
+Also available [MDB style library](https://mdbootstrap.com/docs/standard/).
+
 This bundle includes 2 views with a set of css and js assets:
 - login.html.twig: Simple page layout with a great style.
 - base.html.twig: Minimal Admin layout.
