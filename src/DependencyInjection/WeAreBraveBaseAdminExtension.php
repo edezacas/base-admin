@@ -32,7 +32,7 @@ class WeAreBraveBaseAdminExtension extends Extension implements PrependExtension
                 'app_logout' => $config['logout'],
                 'app_admin_home' => $config['admin_home']
             ),
-            'form_themes' => ['bootstrap_5_layout.html.twig']
+            'form_themes' => ['@WeAreBraveBaseAdmin/form/base-admin.html.twig']
         );
 
         $container->prependExtensionConfig('twig', $twig_config);
