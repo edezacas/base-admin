@@ -58,6 +58,8 @@ if [ -e package.zip ]
    rm package.zip;
 fi
 
+yarn encore production
+
 zip -r package.zip ./src CHANGELOG.md README.md composer.json
 
 echo

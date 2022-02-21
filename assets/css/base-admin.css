@@ -1,5 +1,4 @@
-@import "./vendor/bootstrap.min.css";
-@import "./vendor/themify-icons.css";
+@import "./themify-icons.css";
 @import "./theme_base_admin.css";
 
 article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section {

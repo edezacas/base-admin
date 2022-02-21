@@ -6,7 +6,7 @@
     <title>{% block title %}{% endblock %}{{ app_site_name }}</title>
 
     {% block stylesheets %}
-        <link href="{{ asset('bundles/wearebravebaseadmin/css/base-admin.css') }}" rel="stylesheet"/>
+        <link href="{{ asset('bundles/wearebravebaseadmin/build/base_admin.css') }}" rel="stylesheet"/>
     {% endblock %}
 </head>
 <body>
@@ -95,9 +95,8 @@
 </div>
 
 {% block javascripts %}
-    <script src="{{ asset('bundles/wearebravebaseadmin/js/vendor/jquery.min.js') }}"></script>
-    <script src="{{ asset('bundles/wearebravebaseadmin/js/vendor/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('bundles/wearebravebaseadmin/js/base-admin.js') }}"></script>
+    <script src="{{ asset('bundles/wearebravebaseadmin/build/runtime.js') }}"></script>
+    <script src="{{ asset('bundles/wearebravebaseadmin/build/base_admin.js') }}"></script>
 {% endblock %}
 </body>
 

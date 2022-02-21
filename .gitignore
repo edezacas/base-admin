@@ -15,3 +15,5 @@ package.zip
 *.iml
 
 .phpunit.result.cache
+/node_modules
+/src/Resources/public/build/
