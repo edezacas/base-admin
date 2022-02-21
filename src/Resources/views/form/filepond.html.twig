@@ -9,7 +9,6 @@
     {% for key, child in form.children|filter(child => not child.rendered) %}
         {% if key == 'uploader' %}
             {% set uploaderName = child.vars.id %}
-            {{ child.vars['multiple'] }}
         {% endif %}
 
         {% if key == 'files' %}
@@ -43,6 +42,7 @@
             // Get a reference to the file input element
             var filePondInput = document.getElementById("{{ uploaderName }}");
             var inputFiles = document.getElementById("{{ filesName }}");
+            var apiUrl = "{{ form.vars['uploadUri'] }}";
 
             // Register the plugin with FilePond
             FilePond.registerPlugin(FilePondPluginImagePreview);
@@ -51,6 +51,9 @@
             var pond = FilePond.create(filePondInput, {
                 credits: false,
                 name: "files",
+                allowMultiple: Boolean({{ form.vars['multiple'] }}),
+                acceptedFileTypes: "{{ form.vars['acceptedFileTypes'] }}",
+                files: {{ form.vars['files']  | json_encode }},
                 server: {
                     process: function (fieldName, file, metadata, load, error, progress, abort, transfer, options) {
                         // fieldName is the name of the input field
@@ -60,7 +63,7 @@
 
                         var controller = new AbortController();
 
-                        axios.post('/admin/upload', formData, {
+                        axios.post(apiUrl, formData, {
                             headers: {
                                 'Content-Type': 'multipart/form-data'
                             },
@@ -93,6 +96,16 @@
                                 abort();
                             },
                         };
+                    },
+                    revert: function (uniqueFileId, load, error) {
+                        // Should remove the earlier created temp file here
+                        // ...
+
+                        // Can call the error method if something is wrong, should exit after
+                        error('oh my goodness');
+
+                        // Should call the load method when done, no parameters required
+                        load();
                     },
                 },
             });
