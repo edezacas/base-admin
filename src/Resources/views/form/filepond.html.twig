@@ -1,0 +1,32 @@
+{% block filepond_widget %}
+    {% block filepond_styles %}
+        {{ block('_filepond_styles') }}
+    {% endblock %}
+
+    {% for key, child in form.children|filter(child => not child.rendered) %}
+        {{ form.children['files'].vars.full_name }}
+        {% if key == 'uploader' %}
+            <!-- form.children['files'].vars.full_name -->
+            <input type="file" name="child.vars.full_name" />
+        {% else %}
+            {{ form_widget(child) }}
+            {{ form_errors(child) }}
+        {% endif %}
+    {% endfor %}
+
+    {% block filepond_javascript %}
+        {{ block('_filepond_javascript') }}
+    {% endblock %}
+{% endblock %}
+
+{% block _filepond_styles %}
+    <link href="{{ asset('bundles/wearebravebaseadmin/build/base_admin_filepond.css') }}" rel="stylesheet"/>
+{% endblock %}
+
+
+{% block _filepond_javascript %}
+    <script src="{{ asset('bundles/wearebravebaseadmin/build/base_admin_filepond.js') }}"></script>
+    <scipt>
+
+    </scipt>
+{% endblock %}

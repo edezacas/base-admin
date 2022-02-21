@@ -14,7 +14,8 @@
         "php": ">=7.2.5",
         "symfony/asset": "*",
         "symfony/framework-bundle": "^4.4|^5.4",
-        "symfony/twig-bundle": "*"
+        "symfony/twig-bundle": "*",
+        "symfony/webpack-encore-bundle": "^1.14"
     },
     "require-dev": {
         "symfony/debug": "^4.4",
