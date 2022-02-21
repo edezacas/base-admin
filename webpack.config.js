@@ -15,6 +15,13 @@ Encore
     // only needed for CDN's or sub-directory deploy
     .setManifestKeyPrefix('build/')
 
+    .copyFiles([
+        {from: './node_modules/filepond/dist', to: 'vendor/filepond/[path][name].[ext]'},
+        {from: './node_modules/filepond-plugin-file-validate-type/dist', to: 'vendor/filepond/[path][name].[ext]'},
+        {from: './node_modules/filepond-plugin-image-preview/dist', to: 'vendor/filepond/[path][name].[ext]'},
+        {from: './node_modules/axios/dist', to: 'vendor/axios/[path][name].[ext]'},
+    ])
+
     /*
      * ENTRY CONFIG
      *
@@ -22,7 +29,6 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('base_admin', './assets/app.js')
-    .addEntry('base_admin_filepond', './assets/filepond.js')
 
     // enables the Symfony UX Stimulus bridge (used in assets/bootstrap.js)
     //.enableStimulusBridge('./assets/controllers.json')
@@ -32,7 +38,8 @@ Encore
 
     // will require an extra script tag for runtime.js
     // but, you probably want this, unless you're building a single-page app
-    .enableSingleRuntimeChunk()
+    //.enableSingleRuntimeChunk()
+    .disableSingleRuntimeChunk()
 
     /*
      * FEATURE CONFIG
@@ -76,7 +83,7 @@ Encore
 
     .addPlugin(new webpack.ProvidePlugin({
         $: 'jquery',
-        jQuery: 'jquery',
+        jQuery: 'jquery'
     }))
 ;
 

@@ -17,24 +17,24 @@ class FilepondType extends AbstractType
             ->add('uploader', FileType::class, [
                 'mapped' => false,
                 'required' => false,
-                'attr' => [
-                    'data-name' => 'filepond_uploader'
-                ]
+                'multiple' => $options['multiple']
             ])
             ->add('files', HiddenType::class, [
                 'mapped' => false,
-                'required' => false,
-                'attr' => [
-                    'data-name' => 'filepond_files'
-                ]
+                'required' => false
             ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'compound' => true
+            'compound' => true,
+            'multiple' => false,
+            'uploadUri' => ''
         ]);
+
+        $resolver->setAllowedTypes('uploadUri', 'string');
+        $resolver->setAllowedTypes('multiple', 'bool');
     }
 
     public function getBlockPrefix(): string
