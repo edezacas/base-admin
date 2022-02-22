@@ -112,13 +112,21 @@
                     };
                 },
                 revert: function (uniqueFileId, load, error) {
-                    // Should remove the earlier created temp file here
-                    // ...
+                    var strFiles = inputFiles.value;
+                    var tmpFiles = [];
 
-                    // Can call the error method if something is wrong, should exit after
-                    error('oh my goodness');
+                    if (strFiles) {
+                        tmpFiles = objectToArray(JSON.parse(strFiles));
+                    }
 
-                    // Should call the load method when done, no parameters required
+                    var index = tmpFiles.indexOf(source);
+
+                    if (index != -1) {
+                        tmpFiles.splice(index, 1);
+                    }
+
+                    inputFiles.value = JSON.stringify(tmpFiles);
+
                     load();
                 },
                 remove: (source, load, error) => {
