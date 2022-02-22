@@ -30,7 +30,8 @@
         // Get a reference to the file input element
         var filePondInput = document.getElementById("{{ uploaderName }}");
         var inputFiles = document.getElementById("{{ filesName }}");
-        var apiUrl = "{{ form.vars['uploadUri'] }}";
+        var uploadUrl = "{{ form.vars['uploadUri'] }}";
+        var removeUrl = "{{ form.vars['removeUri'] }}";
         var filesArr = {{ form.vars['files'] | json_encode(constant('JSON_PRETTY_PRINT'))|raw }};
         var files = Array();
         inputFiles.value = JSON.stringify(filesArr);
@@ -64,7 +65,7 @@
 
                     var controller = new AbortController();
 
-                    axios.post(apiUrl, formData, {
+                    axios.post(uploadUrl, formData, {
                         headers: {
                             'Content-Type': 'multipart/form-data'
                         },
@@ -73,13 +74,13 @@
                         }
                     }).then(function (res) {
                         if (res.status == 200) {
-                            var tmpFiles = inputFiles.value;
+                            var strFiles = inputFiles.value;
+                            var tmpFiles = [];
 
-                            if (!tmpFiles) {
-                                tmpFiles = [];
-                            } else {
-                                tmpFiles = JSON.parse(tmpFiles);
+                            if (strFiles) {
+                                tmpFiles = objectToArray(JSON.parse(strFiles));
                             }
+
                             inputFiles.value = JSON.stringify(tmpFiles.concat([res.data.data]));
                             load(res.data)
                         }
@@ -121,12 +122,44 @@
                     load();
                 },
                 remove: (source, load, error) => {
-                    console.log(source);
+                    axios.post(removeUrl, {file: source}, {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(function (res) {
+                        if (res.status == 200) {
+                            var strFiles = inputFiles.value;
+                            var tmpFiles = [];
 
-                    // Should call the load method when done, no parameters required
-                    load();
+                            if (strFiles) {
+                                tmpFiles = objectToArray(JSON.parse(strFiles));
+                            }
+
+                            var index = tmpFiles.indexOf(source);
+
+                            if (index != -1) {
+                                tmpFiles.splice(index, 1);
+                            }
+
+                            inputFiles.value = JSON.stringify(tmpFiles);
+
+                            load();
+                        }
+                    }).catch(function (e) {
+                        abort();
+                    });
                 },
             },
         });
+
+        function objectToArray(obj) {
+            var arr = [];
+
+            for (var prop in obj) {
+                arr.push(obj[prop]);
+            }
+
+            return arr;
+        }
     </script>
 {% endblock %}
