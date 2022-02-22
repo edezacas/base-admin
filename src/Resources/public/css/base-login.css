@@ -12,6 +12,10 @@ body {
     letter-spacing: .2px;
 }
 
+.hidden {
+    display: none !important;;
+}
+
 .sign-bg {
     background-image: url('../img/bg.jpg');
 }
