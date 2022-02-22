@@ -81,7 +81,7 @@
                                 tmpFiles = objectToArray(JSON.parse(strFiles));
                             }
 
-                            inputFiles.value = JSON.stringify(tmpFiles.concat([res.data.data]));
+                            inputFiles.value = JSON.stringify(tmpFiles.concat([res.data]));
                             load(res.data)
                         }
                     }).catch(function (e) {
@@ -119,7 +119,7 @@
                         tmpFiles = objectToArray(JSON.parse(strFiles));
                     }
 
-                    var index = tmpFiles.indexOf(source);
+                    var index = tmpFiles.indexOf(uniqueFileId);
 
                     if (index != -1) {
                         tmpFiles.splice(index, 1);
