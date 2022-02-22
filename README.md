@@ -5,8 +5,6 @@ WeAreBrave Base Admin
 
 This bundle use **Bootstrap 5.1.3** and **jQuery 3.6**.
 
-Also available [MDB style library](https://mdbootstrap.com/docs/standard/).
-
 This bundle includes 2 views with a set of css and js assets:
 - login.html.twig: Simple page layout with a great style.
 - base.html.twig: Minimal Admin layout.
@@ -70,3 +68,22 @@ we_are_brave_base_admin:
     _YOUR_DASHBOARD_CONTENT_PAGE_
 {% endblock %}
 ```
+
+### Bonus
+
+#### Form Themes
+By default we add the [Bootstrap 5 Form Themes](https://github.com/symfony/symfony/blob/master/src/Symfony/Bridge/Twig/Resources/views/Form/bootstrap_5_layout.html.twig), also we have improved:
+
+- **VichImageWidget**: Added class "img-thumbnail" from Bootstrap 5 to image preview.
+
+
+- **FilepondType**: An usefull Form AbstractType that help us to upload multiple (or single) files/images. A compounded type with 2 childs:
+  - Childs:
+    - _uploader_: FileType field to handle file uploads.
+    - _files_: HiddenType field to handle list of files uploaded.
+  - Options:
+    - 'multiple' => Allow upload multiple files (Bool)
+    - 'uploadUri' => Path to request for upload files (String)
+    - 'removeUri' =>  Path to request for remove files (String)
+    - 'files' => A simple array containing paths to show images,
+    - 'acceptedFileTypes' => List (coma separated) of allowed Mime Types (String)
