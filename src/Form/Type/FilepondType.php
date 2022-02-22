@@ -18,8 +18,8 @@ class FilepondType extends AbstractType
         $builder
             ->add('uploader', FileType::class, [
                 'mapped' => false,
-                'required' => false,
-                'multiple' => $options['multiple']
+                'multiple' => $options['multiple'],
+                'required' => $options['required']
             ])
             ->add('files', HiddenType::class, [
                 'mapped' => false,
@@ -33,6 +33,7 @@ class FilepondType extends AbstractType
         $view->vars['uploadUri'] = $options['uploadUri'];
         $view->vars['files'] = $options['files'];
         $view->vars['acceptedFileTypes'] = $options['acceptedFileTypes'];
+        $view->vars['removeUri'] = $options['removeUri'];
     }
 
 
@@ -42,11 +43,13 @@ class FilepondType extends AbstractType
             'compound' => true,
             'multiple' => false,
             'uploadUri' => '',
+            'removeUri' => '',
             'files' => [],
             'acceptedFileTypes' => ''
         ]);
 
         $resolver->setAllowedTypes('uploadUri', 'string');
+        $resolver->setAllowedTypes('removeUri', 'string');
         $resolver->setAllowedTypes('multiple', 'bool');
         $resolver->setAllowedTypes('files', 'array');
         $resolver->setAllowedTypes('acceptedFileTypes', 'string');

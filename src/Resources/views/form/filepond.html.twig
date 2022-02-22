@@ -2,9 +2,10 @@
     {% set uploaderName = "" %}
     {% set filesName = "" %}
 
-    {% block filepond_styles %}
-        {{ block('_filepond_styles') }}
-    {% endblock %}
+    <link href="{{ asset('bundles/wearebravebaseadmin/build/vendor/filepond/filepond.min.css') }}"
+          rel="stylesheet"/>
+    <link href="{{ asset('bundles/wearebravebaseadmin/build/vendor/filepond/filepond-plugin-image-preview.min.css') }}"
+          rel="stylesheet"/>
 
     {% for key, child in form.children|filter(child => not child.rendered) %}
         {% if key == 'uploader' %}
@@ -20,95 +21,112 @@
 
     {% endfor %}
 
-    {% block filepond_javascript %}
-        {{ block('_filepond_javascript') }}
-    {% endblock %}
+    <script src="{{ asset('bundles/wearebravebaseadmin/build/vendor/filepond/filepond.min.js') }}"></script>
+    <script src="{{ asset('bundles/wearebravebaseadmin/build/vendor/filepond/filepond-plugin-file-validate-type.min.js') }}"></script>
+    <script src="{{ asset('bundles/wearebravebaseadmin/build/vendor/filepond/filepond-plugin-image-preview.min.js') }}"></script>
+    <script src="{{ asset('bundles/wearebravebaseadmin/build/vendor/axios/axios.min.js') }}"></script>
 
-    {% block _filepond_styles %}
-        <link href="{{ asset('bundles/wearebravebaseadmin/build/vendor/filepond/filepond.min.css') }}"
-              rel="stylesheet"/>
-        <link href="{{ asset('bundles/wearebravebaseadmin/build/vendor/filepond/filepond-plugin-image-preview.min.css') }}"
-              rel="stylesheet"/>
-    {% endblock %}
+    <script>
+        // Get a reference to the file input element
+        var filePondInput = document.getElementById("{{ uploaderName }}");
+        var inputFiles = document.getElementById("{{ filesName }}");
+        var apiUrl = "{{ form.vars['uploadUri'] }}";
+        var filesArr = {{ form.vars['files'] | json_encode(constant('JSON_PRETTY_PRINT'))|raw }};
+        var files = Array();
+        inputFiles.value = JSON.stringify(filesArr);
 
-
-    {% block _filepond_javascript %}
-        <script src="{{ asset('bundles/wearebravebaseadmin/build/vendor/filepond/filepond.min.js') }}"></script>
-        <script src="{{ asset('bundles/wearebravebaseadmin/build/vendor/filepond/filepond-plugin-file-validate-type.min.js') }}"></script>
-        <script src="{{ asset('bundles/wearebravebaseadmin/build/vendor/filepond/filepond-plugin-image-preview.min.js') }}"></script>
-        <script src="{{ asset('bundles/wearebravebaseadmin/build/vendor/axios/axios.min.js') }}"></script>
-
-        <script>
-            // Get a reference to the file input element
-            var filePondInput = document.getElementById("{{ uploaderName }}");
-            var inputFiles = document.getElementById("{{ filesName }}");
-            var apiUrl = "{{ form.vars['uploadUri'] }}";
-
-            // Register the plugin with FilePond
-            FilePond.registerPlugin(FilePondPluginImagePreview);
-
-            // Create a FilePond instance
-            var pond = FilePond.create(filePondInput, {
-                credits: false,
-                name: "files",
-                allowMultiple: Boolean({{ form.vars['multiple'] }}),
-                acceptedFileTypes: "{{ form.vars['acceptedFileTypes'] }}",
-                files: {{ form.vars['files']  | json_encode }},
-                server: {
-                    process: function (fieldName, file, metadata, load, error, progress, abort, transfer, options) {
-                        // fieldName is the name of the input field
-                        // file is the actual file object to send
-                        var formData = new FormData();
-                        formData.append(fieldName, file);
-
-                        var controller = new AbortController();
-
-                        axios.post(apiUrl, formData, {
-                            headers: {
-                                'Content-Type': 'multipart/form-data'
-                            },
-                            onUploadProgress: function (e) {
-                                progress(e.lengthComputable, e.loaded, e.total);
-                            }
-                        }).then(function (res) {
-                            if (res.status == 200) {
-                                var tmpFiles = inputFiles.value;
-
-                                if (!tmpFiles) {
-                                    tmpFiles = [];
-                                } else {
-                                    tmpFiles = JSON.parse(tmpFiles);
-                                }
-                                inputFiles.value = JSON.stringify(tmpFiles.concat([res.data.data]));
-                                load(res.data)
-                            }
-                        }).catch(function (e) {
-                            abort();
-                        });
-
-                        // Should expose an abort method so the request can be cancelled
-                        return {
-                            abort: function () {
-                                // This function is entered if the user has tapped the cancel button
-                                controller.abort();
-
-                                // Let FilePond know the request has been cancelled
-                                abort();
-                            },
-                        };
-                    },
-                    revert: function (uniqueFileId, load, error) {
-                        // Should remove the earlier created temp file here
-                        // ...
-
-                        // Can call the error method if something is wrong, should exit after
-                        error('oh my goodness');
-
-                        // Should call the load method when done, no parameters required
-                        load();
-                    },
+        for (var key in filesArr) {
+            files.push({
+                options: {
+                    type: 'local',
                 },
+                source: filesArr[key]
             });
-        </script>
-    {% endblock %}
+        }
+
+        // Register the plugin with FilePond
+        FilePond.registerPlugin(FilePondPluginImagePreview);
+
+        // Create a FilePond instance
+        var pond = FilePond.create(filePondInput, {
+            credits: false,
+            name: "files",
+            allowMultiple: Boolean({{ form.vars['multiple'] }}),
+            acceptedFileTypes: "{{ form.vars['acceptedFileTypes'] }}",
+            required: Boolean({{ form.vars['required'] }}),
+            files: files,
+            server: {
+                process: function (fieldName, file, metadata, load, error, progress, abort, transfer, options) {
+                    // fieldName is the name of the input field
+                    // file is the actual file object to send
+                    var formData = new FormData();
+                    formData.append('files', file);
+
+                    var controller = new AbortController();
+
+                    axios.post(apiUrl, formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        },
+                        onUploadProgress: function (e) {
+                            progress(e.lengthComputable, e.loaded, e.total);
+                        }
+                    }).then(function (res) {
+                        if (res.status == 200) {
+                            var tmpFiles = inputFiles.value;
+
+                            if (!tmpFiles) {
+                                tmpFiles = [];
+                            } else {
+                                tmpFiles = JSON.parse(tmpFiles);
+                            }
+                            inputFiles.value = JSON.stringify(tmpFiles.concat([res.data.data]));
+                            load(res.data)
+                        }
+                    }).catch(function (e) {
+                        abort();
+                    });
+
+                    // Should expose an abort method so the request can be cancelled
+                    return {
+                        abort: function () {
+                            // This function is entered if the user has tapped the cancel button
+                            controller.abort();
+
+                            // Let FilePond know the request has been cancelled
+                            abort();
+                        },
+                    };
+                },
+                load: (source, load, error, progress, abort, headers) => {
+                    axios.get(source, {responseType: 'blob'}).then(function (response) {
+                        load(response.data);
+                    });
+
+                    return {
+                        abort: function () {
+                            // Let FilePond know the request has been cancelled
+                            abort();
+                        },
+                    };
+                },
+                revert: function (uniqueFileId, load, error) {
+                    // Should remove the earlier created temp file here
+                    // ...
+
+                    // Can call the error method if something is wrong, should exit after
+                    error('oh my goodness');
+
+                    // Should call the load method when done, no parameters required
+                    load();
+                },
+                remove: (source, load, error) => {
+                    console.log(source);
+
+                    // Should call the load method when done, no parameters required
+                    load();
+                },
+            },
+        });
+    </script>
 {% endblock %}
