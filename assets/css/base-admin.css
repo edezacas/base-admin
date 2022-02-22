@@ -383,7 +383,7 @@ footer {
     border-top: 1px solid rgba(0, 0, 0, .0625);
     color: #7c8695;
     font-size: .87rem;
-    padding-top: 5px;
+    padding: 1em 0;
     text-align: center;
     line-height: 1.5rem;
 }

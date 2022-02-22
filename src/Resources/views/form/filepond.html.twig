@@ -127,7 +127,15 @@
 
                     inputFiles.value = JSON.stringify(tmpFiles);
 
-                    load();
+                    axios.post(removeUrl, {file: uniqueFileId}, {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }).then(function (res) {
+                        if (res.status == 200) {
+                            load();
+                        }
+                    });
                 },
                 remove: (source, load, error) => {
                     axios.post(removeUrl, {file: source}, {

@@ -1,6 +1,6 @@
 {
     "name": "wearebrave/base-admin",
-    "version": "1.4.2",
+    "version": "1.4.3",
     "type": "symfony-bundle",
     "license": "proprietary",
     "description": "WeAreBrave Base Admin Bundle",
