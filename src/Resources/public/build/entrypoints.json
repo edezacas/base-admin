@@ -1,0 +1,12 @@
+{
+  "entrypoints": {
+    "base_admin": {
+      "css": [
+        "./base_admin.css"
+      ],
+      "js": [
+        "./base_admin.js"
+      ]
+    }
+  }
+}

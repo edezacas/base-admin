@@ -16,4 +16,3 @@ package.zip
 
 .phpunit.result.cache
 /node_modules
-/src/Resources/public/build/
