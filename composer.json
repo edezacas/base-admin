@@ -2,7 +2,7 @@
     "name": "edezacas/base-admin",
     "version": "1.2.1",
     "type": "symfony-bundle",
-    "license": "proprietary",
+    "license": "MIT",
     "description": "Symfony 5 Base Admin Bundle with a suite of templates.",
     "authors": [
         {
