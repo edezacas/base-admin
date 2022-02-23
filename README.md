@@ -26,7 +26,7 @@ return [
 
 ```
 edc_base_admin:
-    site_name: 'site tile'
+    site_name: 'Site Title'
     login_check: _route_name_or_url_to_login_check
     logout: _route_name_or_url_to_logout
     admin_home: _route_name_or_url_to_admin_homepage
