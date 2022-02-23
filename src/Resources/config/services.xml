@@ -6,7 +6,7 @@
 
     <services>
         <service id="base_admin.twig.extension"
-                 class="WeAreBrave\BaseAdminBundle\Twig\BaseAdminExtension">
+                 class="EDC\BaseAdminBundle\Twig\BaseAdminExtension">
             <tag name="twig.extension"/>
         </service>
 

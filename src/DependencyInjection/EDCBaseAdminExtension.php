@@ -1,7 +1,7 @@
 <?php
 
 
-namespace WeAreBrave\BaseAdminBundle\DependencyInjection;
+namespace EDC\BaseAdminBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -9,7 +9,7 @@ use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
-class WeAreBraveBaseAdminExtension extends Extension implements PrependExtensionInterface
+class EDCBaseAdminExtension extends Extension implements PrependExtensionInterface
 {
     public function load(array $configs, ContainerBuilder $container)
     {
@@ -33,8 +33,8 @@ class WeAreBraveBaseAdminExtension extends Extension implements PrependExtension
                 'app_admin_home' => $config['admin_home']
             ),
             'form_themes' => [
-                '@WeAreBraveBaseAdmin/form/base-admin.html.twig',
-                '@WeAreBraveBaseAdmin/form/filepond.html.twig',
+                '@EDCBaseAdmin/form/base-admin.html.twig',
+                '@EDCBaseAdmin/form/filepond.html.twig',
                 ]
         );
 

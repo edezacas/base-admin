@@ -1,21 +1,20 @@
 {
-    "name": "wearebrave/base-admin",
-    "version": "1.5.1",
+    "name": "edezacas/base-admin",
+    "version": "1.0.0",
     "type": "symfony-bundle",
     "license": "proprietary",
-    "description": "WeAreBrave Base Admin Bundle",
+    "description": "Symfony 5 Base Admin Bundle with a suite of templates.",
     "authors": [
         {
             "name": "Eduard Deza",
-            "email": "edu@wearebrave.net"
+            "email": "edezacas@gmail.com"
         }
     ],
     "require": {
         "php": ">=7.2.5",
         "symfony/asset": "*",
         "symfony/framework-bundle": "^4.4|^5.4",
-        "symfony/twig-bundle": "*",
-        "symfony/webpack-encore-bundle": "^1.14"
+        "symfony/twig-bundle": "*"
     },
     "require-dev": {
         "symfony/debug": "^4.4",
@@ -30,12 +29,12 @@
     },
     "autoload": {
         "psr-4": {
-            "WeAreBrave\\BaseAdminBundle\\": "src/"
+            "EDC\\BaseAdminBundle\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "WeAreBrave\\BaseAdminBundle\\Tests\\": "tests/"
+            "EDC\\BaseAdminBundle\\Tests\\": "tests/"
         }
     }
 }

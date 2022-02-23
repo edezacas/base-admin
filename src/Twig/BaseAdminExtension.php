@@ -1,6 +1,6 @@
 <?php
 
-namespace WeAreBrave\BaseAdminBundle\Twig;
+namespace EDC\BaseAdminBundle\Twig;
 
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;

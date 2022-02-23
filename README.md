@@ -1,4 +1,4 @@
-WeAreBrave Base Admin
+EDC Base Admin
 =======
 
 ### Getting Started
@@ -17,7 +17,7 @@ This bundle includes 2 views with a set of css and js assets:
 return [
     Symfony\Bundle\FrameworkBundle\FrameworkBundle::class => ['all' => true],
     ...
-    WeAreBrave\BaseAdminBundle\WeAreBraveBaseAdminBundle::class => ['all' => true],
+    EDC\BaseAdminBundle\EDCBaseAdminBundle::class => ['all' => true],
 ];
 ```
 
@@ -25,7 +25,7 @@ return [
 2) Add configuration file:
 
 ```
-we_are_brave_base_admin:
+edc_base_admin:
     site_name: 'site tile'
     login_check: _route_name_or_url_to_login_check
     logout: _route_name_or_url_to_logout
@@ -36,13 +36,13 @@ we_are_brave_base_admin:
 3) To show login page simply create your own login.html.twig and add:
 
 ```
-{% include ('@WeAreBraveBaseAdmin/login.html.twig') %}
+{% include ('@EDCBaseAdmin/login.html.twig') %}
 ```
 
 4) For admin layout, create a template called for example _layout.html.twig_ and add:
 
 ```
-{% extends '@WeAreBraveBaseAdmin/base.html.twig' %}
+{% extends '@EDCBaseAdmin/base.html.twig' %}
 
 {% block title %} _YOUR_CUSTOM_HTML_TITLE_ {% endblock %}
 

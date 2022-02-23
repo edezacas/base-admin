@@ -2,9 +2,9 @@
     {% set uploaderName = "" %}
     {% set filesName = "" %}
 
-    <link href="{{ asset('bundles/wearebravebaseadmin/build/vendor/filepond/filepond.min.css') }}"
+    <link href="{{ asset('bundles/edcbaseadmin/build/vendor/filepond/filepond.min.css') }}"
           rel="stylesheet"/>
-    <link href="{{ asset('bundles/wearebravebaseadmin/build/vendor/filepond/filepond-plugin-image-preview.min.css') }}"
+    <link href="{{ asset('bundles/edcbaseadmin/build/vendor/filepond/filepond-plugin-image-preview.min.css') }}"
           rel="stylesheet"/>
 
     {% for key, child in form.children|filter(child => not child.rendered) %}
@@ -21,10 +21,10 @@
 
     {% endfor %}
 
-    <script src="{{ asset('bundles/wearebravebaseadmin/build/vendor/filepond/filepond.min.js') }}"></script>
-    <script src="{{ asset('bundles/wearebravebaseadmin/build/vendor/filepond/filepond-plugin-file-validate-type.min.js') }}"></script>
-    <script src="{{ asset('bundles/wearebravebaseadmin/build/vendor/filepond/filepond-plugin-image-preview.min.js') }}"></script>
-    <script src="{{ asset('bundles/wearebravebaseadmin/build/vendor/axios/axios.min.js') }}"></script>
+    <script src="{{ asset('bundles/edcbaseadmin/build/vendor/filepond/filepond.min.js') }}"></script>
+    <script src="{{ asset('bundles/edcbaseadmin/build/vendor/filepond/filepond-plugin-file-validate-type.min.js') }}"></script>
+    <script src="{{ asset('bundles/edcbaseadmin/build/vendor/filepond/filepond-plugin-image-preview.min.js') }}"></script>
+    <script src="{{ asset('bundles/edcbaseadmin/build/vendor/axios/axios.min.js') }}"></script>
 
     <script>
         // Get a reference to the file input element

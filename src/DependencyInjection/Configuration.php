@@ -1,7 +1,7 @@
 <?php
 
 
-namespace WeAreBrave\BaseAdminBundle\DependencyInjection;
+namespace EDC\BaseAdminBundle\DependencyInjection;
 
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -11,7 +11,7 @@ class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder('we_are_brave_base_admin');
+        $treeBuilder = new TreeBuilder('edc_base_admin');
 
         $treeBuilder->getRootNode()
             ->children()
