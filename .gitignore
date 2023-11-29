@@ -16,3 +16,5 @@ package.zip
 
 .phpunit.result.cache
 /node_modules
+.yarn
+.yarnrc.yml

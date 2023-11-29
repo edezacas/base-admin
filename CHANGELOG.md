@@ -1,5 +1,9 @@
 # CHANGELOG
 
+2.1.0
+-----
+* Upgrade to Symfony 6
+
 1.1.0
 -----
 * Implemented FilepondType to use [Filepond](https://pqina.nl/filepond/) javascript component to upload files.

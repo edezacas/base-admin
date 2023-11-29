@@ -15,7 +15,7 @@ class EDCBaseAdminExtension extends Extension implements PrependExtensionInterfa
     {
         $loader = new XmlFileLoader(
             $container,
-            new FileLocator(__DIR__.'/../Resources/config')
+            new FileLocator(__DIR__ . '/../../config')
         );
         $loader->load('services.xml');
     }
